@@ -1,0 +1,378 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>🎁 YOU WON! CLAIM YOUR PRIZE NOW!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+        }
+        
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 15px 10px;
+        }
+
+        .container {
+            max-width: 450px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        /* Spinning winner badge */
+        .winner-badge {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            border: 5px solid #ff9800;
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.6);
+            animation: spin-glow 3s linear infinite;
+        }
+        
+        @keyframes spin-glow {
+            0%, 100% { transform: rotate(0deg) scale(1); box-shadow: 0 10px 40px rgba(255, 215, 0, 0.6); }
+            50% { transform: rotate(180deg) scale(1.05); box-shadow: 0 15px 50px rgba(255, 215, 0, 0.8); }
+        }
+
+        .urgent-banner {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff3838 100%);
+            color: white;
+            padding: 12px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            font-weight: 900;
+            text-transform: uppercase;
+            animation: pulse 1.5s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(255, 59, 48, 0.5);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        h1 {
+            font-size: 2em;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff3838 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.3em;
+        }
+
+        .subtitle {
+            font-size: 1.15em;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .timer-box {
+            background: #000;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-size: 2em;
+            font-weight: 900;
+            font-family: 'Courier New', monospace;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+            border: 3px solid #00ff00;
+        }
+
+        .timer-label {
+            font-size: 0.5em;
+            color: #fff;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* MASSIVE GREEN BUTTON - MOVED UP */
+        .mega-button {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+            color: #000;
+            border: 5px solid #ffff00;
+            padding: 25px 15px;
+            font-size: 1.6em;
+            font-weight: 900;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            text-transform: uppercase;
+            box-shadow: 
+                0 15px 40px rgba(0, 255, 0, 0.6),
+                inset 0 -5px 0 rgba(0, 0, 0, 0.2);
+            animation: mega-pulse 1s ease-in-out infinite;
+            margin: 25px 0;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        @keyframes mega-pulse {
+            0%, 100% { 
+                transform: scale(1); 
+                box-shadow: 0 15px 40px rgba(0, 255, 0, 0.6), inset 0 -5px 0 rgba(0, 0, 0, 0.2);
+            }
+            50% { 
+                transform: scale(1.05); 
+                box-shadow: 0 20px 50px rgba(0, 255, 0, 0.8), inset 0 -5px 0 rgba(0, 0, 0, 0.2);
+            }
+        }
+        
+        .mega-button:active {
+            transform: scale(0.95);
+        }
+
+        /* Pointing arrows */
+        .arrow-down {
+            font-size: 3em;
+            animation: bounce-arrow 1s ease-in-out infinite;
+            margin: 15px 0;
+        }
+        
+        @keyframes bounce-arrow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        .fake-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, rgba(0, 255, 0, 0.1) 0%, rgba(0, 200, 0, 0.1) 100%);
+            padding: 15px 10px;
+            border-radius: 12px;
+            border: 2px solid #00ff00;
+        }
+
+        .stat-number {
+            font-size: 1.8em;
+            font-weight: 900;
+            color: #00cc00;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: #333;
+            font-weight: 700;
+        }
+
+        .trust-text {
+            background: #fffacd;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+            font-size: 1.1em;
+            font-weight: 900;
+            color: #000;
+            border: 3px dashed #ffd700;
+        }
+
+        .badge-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .badge {
+            background: #00ff00;
+            color: #000;
+            padding: 12px 8px;
+            border-radius: 12px;
+            font-weight: 900;
+            font-size: 0.95em;
+            border: 2px solid #000;
+        }
+
+        .cta-text {
+            font-size: 1.4em;
+            font-weight: 900;
+            color: #ff3838;
+            margin: 15px 0;
+            text-transform: uppercase;
+            animation: color-flash 2s ease-in-out infinite;
+        }
+        
+        @keyframes color-flash {
+            0%, 100% { color: #ff3838; text-shadow: 0 0 10px rgba(255, 56, 56, 0.5); }
+            50% { color: #00ff00; text-shadow: 0 0 10px rgba(0, 255, 0, 0.5); }
+        }
+
+        .disclaimer {
+            font-size: 0.75em;
+            color: #666;
+            margin-top: 15px;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.7em;
+            }
+            .mega-button {
+                font-size: 1.4em;
+                padding: 22px 12px;
+            }
+            .winner-badge {
+                width: 100px;
+                height: 100px;
+                font-size: 3.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="winner-badge">🏆</div>
+            
+            <div class="urgent-banner">
+                ⚠️ YOU'VE BEEN SELECTED!
+            </div>
+
+            <h1>
+                🎉 CONGRATULATIONS! 🎉<br>
+                <span class="highlight">YOU WON!</span>
+            </h1>
+
+            <p class="subtitle">
+                You're one of TODAY'S LUCKY WINNERS!<br>
+                Claim your exclusive reward NOW!
+            </p>
+
+            <div class="timer-box">
+                <div class="timer-label">⏰ Claim Before Time Runs Out!</div>
+                <div id="timer">14:57</div>
+            </div>
+
+            <div class="cta-text">
+                👇 TAP THE GREEN BUTTON NOW 👇
+            </div>
+
+            <div class="arrow-down">⬇️</div>
+
+            <a href="https://lockedapp.org/cl/i/6ndp4v" class="mega-button">
+                🎁 CLAIM MY PRIZE NOW! 🎁
+            </a>
+
+            <div class="arrow-down" style="transform: rotate(180deg);">⬇️</div>
+
+            <div class="cta-text">
+                ☝️ TAP THE BUTTON ABOVE! ☝️
+            </div>
+
+            <div class="fake-stats">
+                <div class="stat-box">
+                    <span class="stat-number" id="claimed">24,891</span>
+                    <span class="stat-label">Claimed Today</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">98.2%</span>
+                    <span class="stat-label">Success Rate</span>
+                </div>
+            </div>
+
+            <div class="trust-text">
+                ✅ 100% FREE - No Hidden Fees<br>
+                ✅ Instant Access - No Waiting<br>
+                ✅ Safe & Secure Process
+            </div>
+
+            <div class="badge-grid">
+                <div class="badge">🔒 VERIFIED</div>
+                <div class="badge">⚡ INSTANT</div>
+                <div class="badge">✓ TRUSTED</div>
+                <div class="badge">🎯 LIMITED</div>
+            </div>
+
+            <a href="https://lockedapp.org/cl/i/6ndp4v" class="mega-button" style="margin-top: 20px;">
+                🚀 YES! CLAIM MY PRIZE! 🚀
+            </a>
+
+            <p class="disclaimer">
+                * Complete one quick verification step to prove you're human and unlock your exclusive reward. 
+                No payment required. Offer valid for limited time only.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Timer countdown
+        let timeLeft = 15 * 60 - 3;
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            if (timeLeft > 0) timeLeft--;
+            else timeLeft = 15 * 60;
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // Fake claimed counter
+        let claimed = 24891;
+        setInterval(() => {
+            claimed += Math.floor(Math.random() * 6) + 2;
+            document.getElementById('claimed').textContent = claimed.toLocaleString();
+        }, 2500);
+
+        // Button click tracking
+        document.querySelectorAll('.mega-button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>
